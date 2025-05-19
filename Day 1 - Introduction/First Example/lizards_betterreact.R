@@ -32,17 +32,25 @@ ui <- page_sidebar(
 )
 ###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 server <- function(input, output, session) {
+
+  # Combine the selected variables into a new data frame
+  selectedData <- reactive({
+    na.omit(lizard[, c(input$xcol, input$ycol)])
+  })
+
+  clusters <- reactive({
+    kmeans(selectedData(), input$clusters)
+  })
+
   output$plot1 <- renderPlot({
-  	selectedData <- na.omit(lizard[, c(input$xcol, input$ycol)])
-  	clusters <- kmeans(selectedData, input$clusters)
-    palette(viridisLite::viridis(nrow(clusters$centers)))
+    palette(viridisLite::viridis(nrow(clusters()$centers)))
 
     par(mar = c(5.1, 4.1, 0, 1),
         cex.axis = 1.2)
-    plot(selectedData,
-         col = clusters$cluster,
+    plot(selectedData(),
+         col = clusters()$cluster,
          pch = 20, cex = 3, las = 1)
-    points(clusters$centers, pch = 4, cex = 4, lwd = 4,
+    points(clusters()$centers, pch = 4, cex = 4, lwd = 4,
            col = 'red')
   })
 
