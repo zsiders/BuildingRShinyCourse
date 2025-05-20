@@ -16,21 +16,28 @@ ui <- page_sidebar(
    sidebar = sidebar(
      selectInput(inputId = 'active',
                  label = "Choose an Activity Time",
-                 choices = acttime),
+                 choices = c(Choose="",acttime)),
      selectInput(inputId = 'plotchoice',
                  label = "Choose what to plot",
                  choices = plotchoices)
    ),
    plotOutput('plot1')
+   # ,verbatimTextOuput('bug')
 )
+    
 ###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 server <- function(input, output, session){
 	output$plot1 <- renderPlot({
 		#filter by activity time
-		tmp <- lizard[lizard$Activity.Time == input$active, ]
+    if(input$active == ""){
+      tmp <- lizard
+    }else{
+		  tmp <- lizard[lizard$Activity.Time == input$active, ]
+    }
 		#plot by user choice
 		boxplot(tmp[,input$plotchoice])
 	})
+  #output$bug <- renderPrint('newbug')
 }
 
 shinyApp(ui = ui, server = server)
