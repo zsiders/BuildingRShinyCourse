@@ -61,11 +61,11 @@ server <- function(input,output,session){
 		     col = iris$Species)
 	})
 	output$plot3_table <- renderTable({
-    	req(input$plot3_hover)
-    	nearPoints(df = iris, 
-    	           xvar = 'Sepal.Length',
-    	           yvar = 'Sepal.Width',
-    	           coordinfo = input$plot3_hover)
+	    	req(input$plot3_hover)
+	    	nearPoints(df = iris, 
+	    	           xvar = 'Sepal.Length',
+	    	           yvar = 'Sepal.Width',
+	    	           coordinfo = input$plot3_hover)
 	})
 	observeEvent(input$btn,{
 		showModal( 

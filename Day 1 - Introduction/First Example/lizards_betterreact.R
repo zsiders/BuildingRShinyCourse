@@ -33,13 +33,20 @@ ui <- page_sidebar(
 ###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 server <- function(input, output, session) {
 
-  # Combine the selected variables into a new data frame
-  selectedData <- reactive({
-    na.omit(lizard[, c(input$xcol, input$ycol)])
+  selectedData <- reactiveValues()
+  observe({
+    selectedData$df <- na.omit(lizard[, c(input$xcol, input$ycol)])
+    jflsdjfal$dajfldkajf <- 
+    akfjdlkfj$jalfjdls <- 
   })
 
+  # Combine the selected variables into a new data frame
+  # selectedData <- reactive({
+      # na.omit(lizard[, c(input$xcol, input$ycol)])
+  # })
+
   clusters <- reactive({
-    kmeans(selectedData(), input$clusters)
+    kmeans(selectedData$df, input$clusters)
   })
 
   output$plot1 <- renderPlot({
@@ -47,7 +54,7 @@ server <- function(input, output, session) {
 
     par(mar = c(5.1, 4.1, 0, 1),
         cex.axis = 1.2)
-    plot(selectedData(),
+    plot(selectedData$df,
          col = clusters()$cluster,
          pch = 20, cex = 3, las = 1)
     points(clusters()$centers, pch = 4, cex = 4, lwd = 4,
