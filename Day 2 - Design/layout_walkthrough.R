@@ -20,8 +20,13 @@ ui <- page_fluid(
  	col_widths=c(4,8)
 	),
   layout_column_wrap(
-     card('Card 3',
-          plotOutput('plot1')),
+     card(card_header(
+            span('Card 3'),
+            'Additional Info',
+            tooltip('This is the Iris Dataset')
+          	),
+          plotOutput('plot1'),
+          ),
      card('Card 4'),
      card('Card 5'),
      card('Card 6')
