@@ -16,6 +16,7 @@ vbgm_sim <- function(n, Linf = 120, k = 0.2, Lknot = 20, sig = 0.1, min.age = 0,
 
 ui <- page_sidebar(title='Conductor Example',
  	sidebar = sidebar(
+ 	    card(actionButton('btn','SIMULATE')),
  	    card('von Bertalanffy parameters',
 		     sliderInput(inputId = 'Linf',
 		                 label = 'Linf (avg. max)',
@@ -61,6 +62,7 @@ server <- function(input,output,session){
 		         max.age = input$age[2])
 	})
 	output$plot <- renderPlot({
+		if(input$btn==0) return()
 		plot(sim1()$age,
 		     sim1()$L,
 		     pch = 16,
