@@ -5,7 +5,7 @@ account: zsiders
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 14839686
-bundleId: 10355628
+bundleId: 10356491
 url: https://zsiders.shinyapps.io/deploy_UI_ex/
 version: 1
 asMultiple: FALSE
