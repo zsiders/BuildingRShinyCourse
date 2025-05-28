@@ -2,11 +2,8 @@ library(shiny)
 library(bslib)
 library(gplots)
 
-path <- '/Users/zach/Dropbox/Teaching/2025 - FAS 6932 - RShiny/BuildingRShinyCourse/Day 4 - Advanced UI/renderingUI_ex'
-setwd(path)
-
 #read in
-	spp_list <- read.csv('./rockfish.csv')
+	spp_list <- read.csv('rockfish.csv')
 	spp_list <- spp_list[spp_list$Species %in% c('China','Canary','Tiger','Quillback'),]
 	spp_list$btn <- paste0(spp_list$Species, '_btn')
 	spp_list$tab <- paste0(spp_list$Species, '_tab')
@@ -122,6 +119,4 @@ server <- function(input, output, session){
     )
 }
 
-app <- shinyApp(ui = ui, server = server)
-
-runApp(app)
+shinyApp(ui = ui, server = server)

@@ -2,8 +2,10 @@ library(shiny)
 library(bslib)
 library(leaflet)
 library(leaflet.extras)
+library(leaflet.extras2)
 library(shinyWidgets)
 library(dplyr)
+
 ###@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 library(sf)
 path <- '/Users/zach/Dropbox/Teaching/2025 - FAS 6932 - RShiny/BuildingRShinyCourse/Day 4 - Advanced UI/leaflet_ex/'

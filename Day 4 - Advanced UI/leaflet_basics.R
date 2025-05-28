@@ -40,7 +40,7 @@ labels <- sprintf(
 
 leaflet(states) %>%
   setView(-96, 37.8, 4) %>%
-  addTiles() %>%
+  # addTiles() %>%
   addPolygons(
     fillColor = ~pal(density),
     weight = 2,
